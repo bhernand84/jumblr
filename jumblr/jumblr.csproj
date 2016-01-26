@@ -39,9 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factories\HandFactory.cs" />
     <Compile Include="Factories\TileFactory.cs" />
     <Compile Include="Models\Enums\Direction.cs" />
     <Compile Include="Models\Enums\TilePosition.cs" />
+    <Compile Include="Models\Hand.cs" />
     <Compile Include="Models\Tile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
