@@ -56,5 +56,22 @@ namespace jumblr.Tests
             Assert.AreNotEqual(tile.Letter, rotatedLetter);
             Assert.AreEqual(letter, tile.Letter);
         }
+
+        [Test]
+        public void TestTileRotatesFourTimesInSameDirectionIsBackToOriginalState()
+        {
+            Tile tile = tileFactory.GetTile();
+
+            for (int i = 0; i < 4; i++)
+            {
+                Direction toRotate = (Direction)i;
+                var letter = tile.Letter;
+                tile.Rotate(toRotate);
+                tile.Rotate(toRotate);
+                tile.Rotate(toRotate);
+                tile.Rotate(toRotate);
+                Assert.AreEqual(letter, tile.Letter);
+            }
+        }
     }
 }
