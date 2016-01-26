@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Factories\TileFactory.cs" />
     <Compile Include="Models\Enums\Direction.cs" />
+    <Compile Include="Models\Enums\TilePosition.cs" />
     <Compile Include="Models\Tile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

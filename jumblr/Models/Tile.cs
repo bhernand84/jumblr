@@ -25,19 +25,16 @@ namespace jumblr.Models
         public void Rotate(Direction direction = Direction.Right) {
             switch (direction){
                 case Direction.Down:
-                    letters = new string[] { letters[1], letters[5], letters[0], letters[3], letters[4], letters[2] };
+                    letters = new string[] { letters[(int)TilePosition.Top], letters[(int)TilePosition.Opposite], letters[(int)TilePosition.Center], letters[(int)TilePosition.Left], letters[(int)TilePosition.Right], letters[(int)TilePosition.Bottom]};
                     break;
                 case Direction.Up:
-                    letters = new string[] { letters[2], letters[0], letters[5], letters[3], letters[4], letters[1] };
+                    letters = new string[] { letters[(int)TilePosition.Bottom], letters[(int)TilePosition.Center], letters[(int)TilePosition.Opposite], letters[(int)TilePosition.Left], letters[(int)TilePosition.Right], letters[(int)TilePosition.Top] };
                     break;
                 case Direction.Left:
-                    letters = new string[] { letters[4], letters[1], letters[2], letters[0], letters[5], letters[3] };
+                    letters = new string[] { letters[(int)TilePosition.Right], letters[(int)TilePosition.Top], letters[(int)TilePosition.Bottom], letters[(int)TilePosition.Center], letters[(int)TilePosition.Opposite], letters[(int)TilePosition.Left] };
                     break;
                 case Direction.Right:
-                    letters = new string[] { letters[3], letters[1], letters[2], letters[5], letters[0], letters[4] };
-                    break;
-                default:
-                    activeIndex++;
+                    letters = new string[] { letters[(int)TilePosition.Left], letters[(int)TilePosition.Top], letters[(int)TilePosition.Bottom], letters[(int)TilePosition.Opposite], letters[(int)TilePosition.Center], letters[(int)TilePosition.Right] };
                     break;
             }
         }
