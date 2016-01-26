@@ -1,8 +1,11 @@
 ﻿using jumblr.Factories;
 using jumblr.Models;
 using jumblr.Models.Enums;
+using jumblr.Resources;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace jumblr.Tests
 {
@@ -71,6 +74,35 @@ namespace jumblr.Tests
                 tile.Rotate(toRotate);
                 tile.Rotate(toRotate);
                 Assert.AreEqual(letter, tile.Letter);
+            }
+        }
+
+        [Test]
+        public void TestTilesAreRandomlyGenerated()
+        {
+            Tile tile = tileFactory.GetTile();
+            Tile tile2 = tileFactory.GetTile();
+
+            Assert.AreNotEqual(tile.Letters, tile2.Letters);
+        }
+        
+        [Test]
+        public void TestTilesMayNotHaveMoreThan2Vowels()
+        {
+            for (int i = 0; i < 15; i++)
+            {
+                Tile tile = tileFactory.GetTile();
+                Assert.GreaterOrEqual(tile.Letters.Count(m=> Alphabet.Vowels.Contains(m)),2);
+            }
+        }
+
+        [Test]
+        public void TestTilesMustHaveAtLeast4Consonants()
+        {
+            for (int i = 0; i < 15; i++)
+            {
+                Tile tile = tileFactory.GetTile();
+                Assert.GreaterOrEqual(tile.Letters.Count(m => Alphabet.Consonants.Contains(m)), 4);
             }
         }
     }
