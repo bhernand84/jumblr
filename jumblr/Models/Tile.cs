@@ -10,13 +10,12 @@ namespace jumblr.Models
     public class Tile
     {
         #region Fields
-        protected int activeIndex { get; set; }
         protected string[] letters { get; set; }
         #endregion
 
         #region Properties
-
-        public string Letter { get { return letters[activeIndex]; } }
+        public string[] Letters{get{return letters;}}
+        public string Letter { get { return letters[(int)TilePosition.Center]; } }
         
         #endregion
 

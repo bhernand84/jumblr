@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jumblr", "jumblr\jumblr.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jumblr.Tests", "jumblr.Tests\jumblr.Tests.csproj", "{5DE99B19-3B8E-453A-AD98-770CA1787AC7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jumblr.UI", "jumblr.UI\jumblr.UI.csproj", "{27EE3A14-1EA1-499A-A9DD-A25BC60C61DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{5DE99B19-3B8E-453A-AD98-770CA1787AC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DE99B19-3B8E-453A-AD98-770CA1787AC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DE99B19-3B8E-453A-AD98-770CA1787AC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27EE3A14-1EA1-499A-A9DD-A25BC60C61DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27EE3A14-1EA1-499A-A9DD-A25BC60C61DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27EE3A14-1EA1-499A-A9DD-A25BC60C61DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27EE3A14-1EA1-499A-A9DD-A25BC60C61DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
