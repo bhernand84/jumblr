@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace jumblr
+namespace jumblr.Models
 {
-    public class Class1
+    public class Tile
     {
+        public string Letter { get; set; }
     }
 }
