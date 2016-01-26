@@ -16,5 +16,14 @@ namespace jumblr.Tests
             Tile tile = tileFactory.GetTile();
             Assert.NotNull(tile.Letter);
         }
+
+        [Test]
+        public void TestRotateTileChangesLetter()
+        {
+            Tile tile = tileFactory.GetTile();
+            var letter = tile.Letter;
+            tile.Rotate();
+            Assert.AreNotEqual(letter, tile.Letter);
+        }
     }
 }

@@ -11,8 +11,7 @@ namespace jumblr.Factories
     {
         public Tile GetTile()
         {
-            Tile tile =new Tile();
-            tile.Letter = "A";
+            Tile tile =new Tile(new string[]{"a","b","c","d","e","f"});
             return tile;
         }
     }
