@@ -105,5 +105,28 @@ namespace jumblr.Tests
                 Assert.GreaterOrEqual(tile.Letters.Count(m => Alphabet.Consonants.Contains(m)), 4);
             }
         }
+
+        [Test]
+        public void TestVowelsAreNotAlwaysInSamePosition()
+        {
+            int firstVowelIndex =0;
+            for (int i = 0; i < 15; i++)
+            {
+                Tile tile = tileFactory.GetTile();
+                firstVowelIndex += tile.Letters.ToList().IndexOf(tile.Letters.First(m => Alphabet.Vowels.Contains(m)));
+            }
+            Assert.GreaterOrEqual(firstVowelIndex, 15);
+        }
+
+        [Test]
+        public void TestTileCannotRepeatLetters()
+        {
+            for (int i = 0; i < 15; i++)
+            {
+                Tile tile = tileFactory.GetTile();
+                Assert.AreNotEqual(true, tile.Letters.GroupBy(m=>m).Any(m=>m.Count()>1));
+
+            }
+        }
     }
 }
