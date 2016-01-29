@@ -13,7 +13,7 @@ namespace jumblr.Tests
     public class BoardTests
     {
         protected BoardFactory boardFactory = new BoardFactory();
-       
+        protected HandFactory handFactory = new HandFactory(new TileFactory());
 
         [Test]
         public void TestBoardIsCreatedInASquare()
@@ -36,6 +36,25 @@ namespace jumblr.Tests
             }
         }
 
+        [Test]
+        public void TestTileCanBePlacedOnEmptySpace()
+        {
+            Board board = boardFactory.Get(15);
+            var hand = handFactory.GetHand(7);
+            board.Place(hand.First(), 1, 1);
+            Assert.False(board.IsEmpty(1, 1));
+        }
+
+        [Test]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void TestTilePlacedOnTakenSpaceThrowsException()
+        {
+            Board board = boardFactory.Get(15);
+            var hand = handFactory.GetHand(7);
+            board.Place(hand.First(), 1, 1);
+            Assert.False(board.IsEmpty(1, 1));
+            board.Place(hand.First(), 1, 1);
+        }
 
     }
 }

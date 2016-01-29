@@ -19,11 +19,25 @@ namespace jumblr.Models
         {
             return Spaces[x,y] == null;
         }
-
+        
+        public void Place(Tile tile, int p1, int p2)
+        {
+            if (IsEmpty(p1, p2))
+            {
+                Spaces[p1, p2] = tile;
+            }
+            else
+            {
+                throw new InvalidOperationException();
+            }
+        }
         #endregion
+
         public Board(int size)
         {
            Spaces = new Tile[size,size];
         }
+
+      
     }
 }
