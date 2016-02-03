@@ -56,5 +56,19 @@ namespace jumblr.Tests
             board.Place(hand.First(), 1, 1);
         }
 
+        [Test]
+        public void TilesPlacedAdjacentVerticallyFormWords()
+        {
+            Board board = boardFactory.Get(15);
+            var hand = handFactory.GetHand(7);
+            var word = hand.First().Letter + hand.Skip(1).First().Letter;
+            board.Place(hand.First(), 1, 1);
+            board.Place(hand.Skip(1).First(), 1, 2);
+
+            var words = board.GetWords();
+            Assert.AreEqual(words.Count(), 1);
+            Assert.AreEqual(words.First(), word);
+        }
+
     }
 }
