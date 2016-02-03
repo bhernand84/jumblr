@@ -35,27 +35,42 @@ namespace jumblr.Models
         public IEnumerable<string> GetWords()
         {
             string verticalWord = null;
+            string horizontalWord = null;
             for (int i = 0; i < Rows; i++)
             {
                 for (int j = 0; j < Columns; j++)
                 {
-                    if (!IsEmpty(i, j))
-                    {
-                        verticalWord += Spaces[i, j].Letter;
-                    }
-                    else
-                    {
-                        if (verticalWord.IsValid())
-                        {
-                            Words.Add(verticalWord);
-                        }
-                        verticalWord = null;
-                    }
+                    verticalWord = checkTile(i, j, verticalWord);
+                    horizontalWord = checkTile(j, i, horizontalWord);
                 }
+                AddWord(verticalWord);
+                AddWord(horizontalWord);
+                verticalWord = horizontalWord = null;
             }
+
             return Words;
         }
-             
+        protected string checkTile(int x, int y, string word)
+        {
+            if (!IsEmpty(x, y))
+            {
+                word += Spaces[x, y].Letter;
+            }
+            else
+            {
+                AddWord(word);
+                word = null;
+            }
+            return word;
+        }
+
+        protected void AddWord(string word)
+        {
+            if (word.IsValid())
+            {
+                Words.Add(word);
+            }
+        }
         #endregion
 
         public Board(int size)

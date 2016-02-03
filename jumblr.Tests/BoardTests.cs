@@ -70,5 +70,150 @@ namespace jumblr.Tests
             Assert.AreEqual(words.First(), word);
         }
 
+        [Test]
+        public void TilesPlacedAdjacentVerticallyEdgeOfBoardFormWords()
+        {
+            Board board = boardFactory.Get(15);
+            var hand = handFactory.GetHand(7);
+            var word = hand.First().Letter + hand.Skip(1).First().Letter;
+            board.Place(hand.First(), 0, 0);
+            board.Place(hand.Skip(1).First(), 0, 1);
+
+            board.Place(hand.First(), 14, 13);
+            board.Place(hand.Skip(1).First(), 14,14);
+
+            var words = board.GetWords();
+            Assert.AreEqual(words.Count(), 2);
+            Assert.AreEqual(words.First(), word);
+            Assert.AreEqual(words.Skip(1).First(), word);
+        }
+       
+        [Test]
+        public void TilesPlacedAdjacentVerticallyEdgeOfBoardDoNotBleedIntoNextRow()
+        {
+            Board board = boardFactory.Get(15);
+            var hand = handFactory.GetHand(7);
+            var word = hand.First().Letter + hand.Skip(1).First().Letter;
+            board.Place(hand.First(), 0, 14);
+            board.Place(hand.Skip(1).First(), 1, 1);
+
+            board.Place(hand.First(), 14, 13);
+
+            var words = board.GetWords();
+            Assert.AreEqual(words.Count(), 0);
+        }
+
+
+        [Test]
+        public void MultipleTilesPlacedAdjacentVerticallyFormWords()
+        {
+            Board board = boardFactory.Get(15);
+            var hand = handFactory.GetHand(7);
+            var word = hand.First().Letter + hand.Skip(1).First().Letter;
+            var word2 = hand.Skip(1).First().Letter + hand.Skip(2).First().Letter + hand.Skip(3).First().Letter;
+            board.Place(hand.First(), 1, 1);
+            board.Place(hand.Skip(1).First(), 1, 2);
+
+            board.Place(hand.Skip(1).First(), 3, 2);
+            board.Place(hand.Skip(2).First(), 3, 3);
+            board.Place(hand.Skip(3).First(), 3, 4);
+
+            var words = board.GetWords();
+            Assert.AreEqual(words.Count(), 2);
+            Assert.AreEqual(words.First(), word);
+
+            Assert.AreEqual(words.Skip(1).First(), word2);
+        }
+
+        [Test]
+        public void TilesPlacedAdjacentHorizontallyFormWords()
+        {
+            Board board = boardFactory.Get(15);
+            var hand = handFactory.GetHand(7);
+            var word = hand.First().Letter + hand.Skip(1).First().Letter;
+            board.Place(hand.First(), 1, 1);
+            board.Place(hand.Skip(1).First(), 2, 1);
+
+            var words = board.GetWords();
+            Assert.AreEqual(words.Count(), 1);
+            Assert.AreEqual(words.First(), word);
+        }
+
+        [Test]
+        public void TilesPlacedAdjacentHoriontallyEdgeOfBoardFormWords()
+        {
+            Board board = boardFactory.Get(15);
+            var hand = handFactory.GetHand(7);
+            var word = hand.First().Letter + hand.Skip(1).First().Letter;
+            board.Place(hand.First(), 0, 0);
+            board.Place(hand.Skip(1).First(), 1, 0);
+
+            board.Place(hand.First(), 13, 14);
+            board.Place(hand.Skip(1).First(), 14, 14);
+
+            var words = board.GetWords();
+            Assert.AreEqual(words.Count(), 2);
+            Assert.AreEqual(words.First(), word);
+            Assert.AreEqual(words.Skip(1).First(), word);
+        }
+
+        [Test]
+        public void TilesPlacedAdjacentHorizontallyEdgeOfBoardDoNotBleedIntoNextRow()
+        {
+            Board board = boardFactory.Get(15);
+            var hand = handFactory.GetHand(7);
+            var word = hand.First().Letter + hand.Skip(1).First().Letter;
+            board.Place(hand.First(), 0, 14);
+            board.Place(hand.Skip(1).First(), 1, 0);
+
+            board.Place(hand.First(), 13, 14);
+            board.Place(hand.First(), 14, 0);
+
+            var words = board.GetWords();
+            Assert.AreEqual(words.Count(), 0);
+        }
+
+
+        [Test]
+        public void MultipleTilesPlacedAdjacentHorizontallyFormWords()
+        {
+            Board board = boardFactory.Get(15);
+            var hand = handFactory.GetHand(7);
+            var word = hand.First().Letter + hand.Skip(1).First().Letter;
+            var word2 = hand.Skip(1).First().Letter + hand.Skip(2).First().Letter + hand.Skip(3).First().Letter;
+            board.Place(hand.First(), 1, 1);
+            board.Place(hand.Skip(1).First(), 2,  1);
+
+            board.Place(hand.Skip(1).First(), 3, 3);
+            board.Place(hand.Skip(2).First(), 4, 3);
+            board.Place(hand.Skip(3).First(), 5, 3);
+
+            var words = board.GetWords();
+            Assert.AreEqual(words.Count(), 2);
+            Assert.AreEqual(words.First(), word);
+
+            Assert.AreEqual(words.Skip(1).First(), word2);
+        }
+
+        [Test]
+        public void MultipleTilesPlacedAdjacentFormWords()
+        {
+            Board board = boardFactory.Get(15);
+            var hand = handFactory.GetHand(7);
+            var word = hand.First().Letter + hand.Skip(1).First().Letter;
+            var word2 = hand.Skip(1).First().Letter +  hand.Skip(1).First().Letter + hand.Skip(2).First().Letter + hand.Skip(3).First().Letter;
+            board.Place(hand.First(), 1, 1);
+            board.Place(hand.Skip(1).First(), 2, 1);
+
+            board.Place(hand.Skip(1).First(), 2, 2);
+            board.Place(hand.Skip(2).First(), 2, 3);
+            board.Place(hand.Skip(3).First(), 2, 4);
+
+            var words = board.GetWords();
+            Assert.AreEqual(words.Count(), 2);
+            Assert.AreEqual(words.First(), word);
+
+            Assert.AreEqual(words.Skip(1).First(), word2);
+        }
     }
 }
