@@ -10,7 +10,7 @@ namespace jumblr.Models
     {
         #region Fields
 
-        protected IEnumerable<Tile> tiles;
+        protected List <Tile> tiles;
 
         #endregion
 
@@ -24,11 +24,21 @@ namespace jumblr.Models
 
         public Hand(IEnumerable<Tile> tiles)
         {
-            this.tiles = tiles;
+            this.tiles = tiles.ToList();
         }
 
         #endregion
 
+        #region Methods
+
+        public void Remove(Tile tile)
+        {
+            if (tiles.Contains(tile))
+            {
+                tiles.Remove(tile);
+            }
+        }
+        #endregion
         #region IEnumerable<Tile> Implementation
 
         public IEnumerator<Tile> GetEnumerator()

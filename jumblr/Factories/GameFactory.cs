@@ -11,7 +11,7 @@ namespace jumblr.Factories
     {
         public Game Get()
         {
-            return new Game();
+            return new Game(new BoardFactory(), new HandFactory(new TileFactory()));
         }
     }
 }
